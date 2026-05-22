@@ -1,0 +1,1251 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>vórtice granola · artesanal de Buenos Aires</title>
+<meta name="description" content="Granola artesanal endulzada sólo con miel de campo. Frasco de vidrio o bolsa biodegradable. Envíos en CABA y GBA." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg: #fafaf9;          /* stone-50 */
+    --bg-2: #f5f5f4;        /* stone-100 */
+    --bg-3: #eeece7;        /* warm cream */
+    --ink: #1c1917;         /* stone-900 */
+    --ink-2: #292524;       /* stone-800 */
+    --ink-3: #57534e;       /* stone-600 */
+    --ink-4: #a8a29e;       /* stone-400 */
+    --line: #e7e5e4;        /* stone-200 */
+    --line-2: #d6d3d1;
+    --accent-a:#f97316;     /* orange */
+    --accent-b:#fbbf24;     /* amber */
+    --accent-c:#ec4899;     /* pink/magenta */
+    --grad: linear-gradient(95deg, #f97316 0%, #fbbf24 45%, #ec4899 100%);
+    --grad-soft: linear-gradient(140deg, #fde68a 0%, #fdba74 45%, #f9a8d4 100%);
+    --radius: 14px;
+    --radius-lg: 22px;
+    --shadow-1: 0 1px 2px rgba(28,25,23,.04), 0 1px 1px rgba(28,25,23,.03);
+    --shadow-2: 0 10px 30px -12px rgba(28,25,23,.18), 0 2px 6px rgba(28,25,23,.04);
+    --shadow-3: 0 30px 60px -20px rgba(28,25,23,.28);
+  }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; background:var(--bg); color:var(--ink); }
+  body{
+    font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    font-feature-settings: "ss01","cv11";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    line-height: 1.55;
+    overflow-x: hidden;
+  }
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; }
+  button{ font-family:inherit; cursor:pointer; }
+
+  .serif{ font-family:"Playfair Display", "Cormorant Garamond", Georgia, serif; font-weight:400; letter-spacing:-0.01em; }
+  .smallcaps{ font-variant-caps: all-small-caps; letter-spacing: .22em; text-transform: lowercase; }
+
+  /* ============ Layout ============ */
+  .wrap{ width:100%; max-width: 1180px; margin:0 auto; padding: 0 22px; }
+  @media (min-width: 760px){ .wrap{ padding: 0 36px; } }
+
+  /* ============ NAV ============ */
+  .nav{
+    position: sticky; top:0; z-index: 30;
+    background: rgba(250,250,249,.82);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(231,229,228,.7);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 14px 0;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    text-decoration:none; color: var(--ink);
+  }
+  .brand .mark{ width:30px; height:30px; }
+  .brand .wordmark{
+    display:flex; align-items:baseline; gap:7px;
+    font-family:"Playfair Display", serif; font-weight:400; font-size: 19px;
+    color: var(--ink-2);
+    letter-spacing: -0.01em;
+  }
+  .brand .wordmark .sub{
+    font-family:"Inter",sans-serif; font-size: 10px; letter-spacing:.32em; text-transform:uppercase;
+    color: var(--ink-3); font-weight:500;
+  }
+  .cart-btn{
+    position: relative;
+    width: 42px; height:42px; border-radius: 999px;
+    border: 1px solid var(--line);
+    background:#fff;
+    display:inline-flex; align-items:center; justify-content:center;
+    transition: transform .15s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .cart-btn:hover{ box-shadow: var(--shadow-2); border-color: var(--line-2); }
+  .cart-btn:active{ transform: scale(.96); }
+  .cart-btn svg{ width:20px; height:20px; color: var(--ink-2); }
+  .cart-badge{
+    position:absolute; top:-4px; right:-4px;
+    min-width: 20px; height:20px; padding: 0 5px;
+    border-radius: 999px;
+    background: var(--grad);
+    color:#fff; font-size: 11px; font-weight:700;
+    display:none; align-items:center; justify-content:center;
+    box-shadow: 0 2px 8px rgba(236,72,153,.35);
+    font-variant-numeric: tabular-nums;
+  }
+  .cart-badge.is-visible{ display:inline-flex; animation: pop .3s ease; }
+  @keyframes pop{
+    0%{ transform: scale(.5); opacity:0; }
+    60%{ transform: scale(1.15); }
+    100%{ transform: scale(1); opacity:1; }
+  }
+
+  /* ============ HERO ============ */
+  .hero{
+    padding: 56px 0 28px;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns: 1fr; gap: 36px; align-items:center;
+  }
+  @media (min-width: 900px){
+    .hero{ padding: 96px 0 64px; }
+    .hero-grid{ grid-template-columns: 1.05fr .95fr; gap: 56px; }
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size: 11px; letter-spacing:.22em; text-transform:uppercase;
+    color: var(--ink-3); font-weight: 500;
+  }
+  .eyebrow .dot{
+    width:6px; height:6px; border-radius:999px; background: var(--grad);
+  }
+  h1.hero-title{
+    font-family:"Playfair Display", serif; font-weight:400;
+    font-size: clamp(38px, 7.2vw, 76px);
+    line-height: 1.02; letter-spacing: -0.02em;
+    margin: 18px 0 22px; color: var(--ink);
+    text-wrap: balance;
+  }
+  h1.hero-title em{
+    font-style: italic; font-weight: 400;
+    background: var(--grad);
+    -webkit-background-clip: text; background-clip:text; color: transparent;
+  }
+  .hero-sub{
+    font-size: 17px; color: var(--ink-3); max-width: 46ch;
+    margin: 0 0 30px;
+    text-wrap: pretty;
+  }
+  @media (min-width: 900px){ .hero-sub{ font-size: 18px; } }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding: 14px 22px; border-radius: 999px;
+    font-size: 14px; font-weight: 500; letter-spacing:.01em;
+    border: 1px solid transparent;
+    background: var(--ink); color: var(--bg);
+    text-decoration: none;
+    transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
+  }
+  .btn:hover{ transform: translateY(-1px); box-shadow: var(--shadow-2); }
+  .btn:active{ transform: translateY(0); }
+  .btn .arrow{ transition: transform .2s ease; }
+  .btn:hover .arrow{ transform: translateX(3px); }
+  .btn.ghost{
+    background: transparent; color: var(--ink-2);
+    border-color: var(--line-2);
+  }
+  .btn.ghost:hover{ background: #fff; }
+  .btn.accent{
+    background: var(--grad); color:#fff; border:none;
+    box-shadow: 0 8px 20px -6px rgba(249,115,22,.35);
+  }
+  .btn.accent:hover{ box-shadow: 0 12px 28px -8px rgba(236,72,153,.45); }
+
+  .hero-cta-row{ display:flex; flex-wrap:wrap; gap: 10px; align-items:center; }
+  .hero-meta{
+    display:flex; flex-wrap:wrap; gap: 20px 28px;
+    margin-top: 40px; padding-top: 24px;
+    border-top: 1px solid var(--line);
+    color: var(--ink-3); font-size: 13px;
+  }
+  .hero-meta b{ color: var(--ink-2); font-weight:600; }
+
+  /* hero visual */
+  .hero-visual{
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius-lg);
+    background:
+      radial-gradient(120% 80% at 80% 20%, rgba(249,115,22,.35), transparent 55%),
+      radial-gradient(80% 60% at 20% 90%, rgba(236,72,153,.28), transparent 60%),
+      linear-gradient(160deg, #fde7c2 0%, #f5d6b0 50%, #f1bca6 100%);
+    position: relative; overflow:hidden;
+    box-shadow: var(--shadow-2);
+  }
+  .hero-visual::after{
+    content:""; position:absolute; inset:0;
+    background: repeating-linear-gradient(45deg, rgba(255,255,255,.0) 0 14px, rgba(255,255,255,.06) 14px 15px);
+    mix-blend-mode: overlay;
+  }
+  .hero-visual .pl{
+    position:absolute; left: 22px; bottom: 18px;
+    font-family: "JetBrains Mono", ui-monospace, Menlo, monospace;
+    font-size: 11px; color: rgba(28,25,23,.55);
+    letter-spacing: .04em;
+  }
+  .hero-visual .jar{
+    position:absolute; inset: 8% 14% 8% 14%;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.18) 0 18%, transparent 18% 100%),
+      linear-gradient(180deg, #d6a878 0%, #b07a4a 100%);
+    border-radius: 28px 28px 36px 36px / 18px 18px 50px 50px;
+    box-shadow: inset 0 0 0 6px rgba(255,255,255,.18), inset 0 -30px 60px rgba(0,0,0,.18);
+  }
+  .hero-visual .lid{
+    position:absolute; left: 22%; right: 22%; top: 4%;
+    height: 7%;
+    background: linear-gradient(180deg, #292524, #1c1917);
+    border-radius: 8px 8px 4px 4px;
+  }
+  .hero-visual .label{
+    position:absolute; left: 24%; right: 24%; top: 45%;
+    background: #fafaf9; padding: 18px 14px 14px;
+    text-align:center; border-radius: 4px;
+    box-shadow: 0 6px 16px rgba(0,0,0,.12);
+  }
+  .hero-visual .label .l-mark{ width:22px; height:22px; margin:0 auto 6px; display:block; }
+  .hero-visual .label .l-name{ font-family:"Playfair Display",serif; font-size: 14px; color:var(--ink); }
+  .hero-visual .label .l-sub{ font-size: 8px; letter-spacing:.3em; text-transform:uppercase; color: var(--ink-3); margin-top:2px; }
+
+  /* ============ Section base ============ */
+  section{ padding: 72px 0; }
+  @media (min-width:900px){ section{ padding: 110px 0; } }
+
+  .section-head{ margin-bottom: 36px; }
+  @media (min-width:900px){ .section-head{ margin-bottom: 54px; } }
+  .section-head .eyebrow{ margin-bottom: 14px; }
+  .section-head h2{
+    font-family:"Playfair Display", serif; font-weight:400;
+    font-size: clamp(30px, 4.6vw, 50px);
+    line-height: 1.05; letter-spacing:-0.015em;
+    margin: 0 0 12px; color: var(--ink);
+    text-wrap: balance;
+  }
+  .section-head p{
+    color: var(--ink-3); font-size: 16px; max-width: 56ch; margin:0;
+    text-wrap: pretty;
+  }
+
+  /* ============ TIENDA ============ */
+  #tienda{ background: var(--bg-2); }
+  .product-grid{
+    display:grid; grid-template-columns: 1fr; gap: 18px;
+  }
+  @media (min-width: 760px){ .product-grid{ grid-template-columns: 1fr 1fr; gap: 22px; } }
+
+  .product{
+    background:#fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 22px;
+    display:flex; flex-direction:column;
+    transition: transform .2s ease, box-shadow .25s ease, border-color .2s ease;
+    position:relative; overflow:hidden;
+  }
+  .product:hover{ transform: translateY(-3px); box-shadow: var(--shadow-2); border-color: transparent; }
+  .product.is-glass{
+    background: linear-gradient(180deg, #fffaf2 0%, #fff 60%);
+  }
+  .product .visual{
+    aspect-ratio: 16/11;
+    border-radius: 14px;
+    margin-bottom: 22px;
+    position:relative; overflow:hidden;
+    background: var(--bg-3);
+  }
+  .product.is-glass .visual{
+    background:
+      radial-gradient(70% 60% at 70% 30%, rgba(251,191,36,.35), transparent 60%),
+      radial-gradient(70% 60% at 30% 80%, rgba(249,115,22,.18), transparent 60%),
+      linear-gradient(160deg, #f5ecdc, #e8dcc2);
+  }
+  .product.is-bag .visual{
+    background:
+      radial-gradient(60% 50% at 30% 30%, rgba(236,72,153,.18), transparent 60%),
+      linear-gradient(160deg, #efe9df, #ddd5c4);
+  }
+  .product .visual::after{
+    content:""; position:absolute; inset:0;
+    background: repeating-linear-gradient(135deg, transparent 0 18px, rgba(28,25,23,.035) 18px 19px);
+  }
+  .product .visual .v-label{
+    position:absolute; left: 12px; bottom: 10px;
+    font-family: ui-monospace, Menlo, monospace; font-size: 10px;
+    color: rgba(28,25,23,.55); letter-spacing:.04em;
+  }
+  .product .visual .v-illus{
+    position:absolute; inset: 0;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .badge{
+    display:inline-flex; align-items:center; gap:6px;
+    font-size: 11px; letter-spacing:.14em; text-transform:uppercase;
+    padding: 6px 10px; border-radius: 999px;
+    background: #fff; color: var(--ink-2);
+    border: 1px solid var(--line);
+    font-weight: 500;
+  }
+  .badge.accent{
+    background: var(--grad);
+    color:#fff; border:none;
+  }
+  .badge.soft{
+    background: var(--grad-soft); color: var(--ink-2); border:none;
+  }
+  .product .head{ display:flex; align-items:center; justify-content:space-between; margin-bottom: 10px; gap: 10px; }
+  .product h3{
+    font-family:"Playfair Display", serif; font-weight:400;
+    font-size: 24px; line-height: 1.15; margin: 4px 0 6px;
+    letter-spacing: -0.01em; color: var(--ink);
+  }
+  .product .desc{ color: var(--ink-3); font-size: 14px; margin: 0 0 18px; }
+  .product .price-row{
+    display:flex; align-items:flex-end; justify-content:space-between;
+    margin-top: auto; gap: 12px; flex-wrap: wrap;
+  }
+  .product .price{
+    font-family:"Inter", sans-serif; font-size: 30px; font-weight: 600;
+    color: var(--ink); letter-spacing: -0.01em;
+    font-variant-numeric: tabular-nums;
+  }
+  .product .price .ccy{ font-size: 14px; color: var(--ink-3); margin-right: 2px; font-weight: 500; }
+  .btn-add{
+    display:inline-flex; align-items:center; gap: 8px;
+    padding: 12px 18px; border-radius: 999px;
+    background: var(--ink); color: var(--bg);
+    border: none; font-size: 13px; font-weight: 500;
+    transition: transform .15s ease, background .2s ease, box-shadow .2s ease;
+  }
+  .btn-add:hover{ background: var(--ink-2); box-shadow: var(--shadow-2); }
+  .btn-add:active{ transform: scale(.97); }
+  .btn-add svg{ width:14px; height:14px; }
+  .btn-add.added{ background: #1f6b3f; }
+  .btn-add.added::before{
+    content:"✓ "; font-weight: 700;
+  }
+
+  /* ============ COMO COMPRAS ============ */
+  #como{ background: var(--bg); }
+  .steps{ display:grid; grid-template-columns: 1fr; gap: 18px; }
+  @media (min-width: 760px){ .steps{ grid-template-columns: repeat(3, 1fr); gap: 22px; } }
+  .step{
+    background: #fff; border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    position: relative;
+  }
+  .step .num{
+    font-family:"Playfair Display", serif; font-style: italic;
+    font-size: 44px; line-height: 1; color: transparent;
+    background: var(--grad); -webkit-background-clip: text; background-clip:text;
+    margin-bottom: 16px;
+  }
+  .step h3{
+    font-family:"Playfair Display", serif; font-weight:400;
+    font-size: 22px; margin: 0 0 8px; letter-spacing:-.01em;
+  }
+  .step p{ color: var(--ink-3); font-size: 14px; margin:0; }
+  .step .ico{
+    position: absolute; top: 24px; right: 24px;
+    width: 32px; height: 32px; color: var(--ink-4);
+  }
+
+  /* ============ LA GRANOLA ============ */
+  #granola{ background: var(--bg-2); }
+  .granola-grid{
+    display:grid; grid-template-columns: 1fr; gap: 36px; align-items:start;
+  }
+  @media (min-width: 900px){
+    .granola-grid{ grid-template-columns: 1fr 1fr; gap: 64px; }
+  }
+  .granola-visual{
+    aspect-ratio: 4/5;
+    border-radius: var(--radius-lg);
+    background:
+      radial-gradient(80% 60% at 30% 30%, rgba(251,191,36,.4), transparent 60%),
+      radial-gradient(60% 50% at 80% 80%, rgba(249,115,22,.25), transparent 60%),
+      linear-gradient(160deg, #efe2c8, #d9c39a);
+    position:relative; overflow:hidden;
+    box-shadow: var(--shadow-1);
+  }
+  .granola-visual::after{
+    content:""; position:absolute; inset:0;
+    background: repeating-linear-gradient(45deg, transparent 0 14px, rgba(255,255,255,.05) 14px 15px);
+  }
+  .granola-visual .pl{
+    position:absolute; left: 18px; bottom: 14px;
+    font-family: ui-monospace, Menlo, monospace; font-size: 11px;
+    color: rgba(28,25,23,.55);
+  }
+  .granola-visual .bowl{
+    position:absolute; left: 12%; right: 12%; top: 28%; bottom: 12%;
+    background:
+      radial-gradient(80% 50% at 50% 25%, #8b5a2b 0 30%, #6b3f1b 60%, #4a2810 100%);
+    border-radius: 50%/45% 45% 55% 55%;
+    box-shadow: inset 0 -20px 40px rgba(0,0,0,.35), 0 20px 30px -10px rgba(0,0,0,.2);
+  }
+
+  .granola-body p{ color: var(--ink-2); font-size: 17px; line-height: 1.65; text-wrap: pretty; }
+  .bullets{ list-style: none; padding:0; margin: 28px 0 0; display:grid; gap: 14px; }
+  .bullets li{
+    display:flex; gap: 14px; align-items: flex-start;
+    padding: 14px 0; border-top: 1px solid var(--line);
+    font-size: 15px; color: var(--ink-2);
+  }
+  .bullets li:last-child{ border-bottom: 1px solid var(--line); }
+  .bullets li .b-dot{
+    width: 8px; height:8px; border-radius:999px; margin-top: 8px;
+    background: var(--grad); flex-shrink:0;
+  }
+
+  /* ============ CONTACTO ============ */
+  #contacto{ background: var(--bg); }
+  .contact-card{
+    background:#fff; border-radius: var(--radius-lg);
+    border: 1px solid var(--line);
+    padding: 36px 26px;
+    display:grid; grid-template-columns: 1fr; gap: 26px;
+  }
+  @media (min-width: 760px){
+    .contact-card{ grid-template-columns: 1fr 1fr; padding: 44px; gap: 36px; }
+  }
+  .contact-block h3{
+    font-family:"Playfair Display", serif; font-weight: 400;
+    font-size: 22px; margin: 0 0 6px;
+  }
+  .contact-block p{ color: var(--ink-3); margin: 0 0 14px; font-size: 14px; }
+  .contact-block .v{ font-size: 18px; font-weight: 500; color: var(--ink); margin-bottom: 14px; letter-spacing:-.01em; }
+  .pay{
+    grid-column: 1 / -1;
+    border-top: 1px solid var(--line);
+    padding-top: 22px;
+    display:flex; flex-wrap: wrap; align-items:center; gap: 10px;
+    font-size: 13px; color: var(--ink-3);
+  }
+  .pay .label{ margin-right: 4px; }
+  .pay .pbadge{
+    border: 1px solid var(--line-2); border-radius: 999px;
+    padding: 6px 12px; font-size: 12px; color: var(--ink-2);
+    background: #fff;
+  }
+
+  /* ============ FOOTER ============ */
+  footer{
+    padding: 36px 0 56px;
+    border-top: 1px solid var(--line);
+    background: var(--bg);
+  }
+  .footer-inner{
+    display:flex; flex-direction: column; gap: 18px;
+    align-items: flex-start;
+  }
+  @media (min-width: 760px){
+    .footer-inner{ flex-direction: row; justify-content: space-between; align-items: center; }
+  }
+  .footer-meta{ font-size: 12px; color: var(--ink-3); letter-spacing:.02em; }
+
+  /* ============ CART PANEL ============ */
+  .scrim{
+    position: fixed; inset: 0; z-index: 50;
+    background: rgba(28,25,23,.4);
+    opacity: 0; pointer-events: none;
+    transition: opacity .25s ease;
+    backdrop-filter: blur(2px);
+  }
+  .scrim.open{ opacity: 1; pointer-events: auto; }
+
+  .panel{
+    position: fixed; top: 0; right: 0; bottom: 0; z-index: 60;
+    width: 100%; max-width: 440px;
+    background: var(--bg);
+    transform: translateX(105%);
+    transition: transform .35s cubic-bezier(.2,.8,.2,1);
+    display:flex; flex-direction: column;
+    box-shadow: -20px 0 60px -20px rgba(0,0,0,.25);
+  }
+  .panel.open{ transform: translateX(0); }
+  .panel-head{
+    display:flex; align-items:center; justify-content: space-between;
+    padding: 22px 22px 16px;
+    border-bottom: 1px solid var(--line);
+  }
+  .panel-head h3{
+    font-family:"Playfair Display", serif; font-weight:400;
+    font-size: 24px; margin: 0; letter-spacing:-.01em;
+  }
+  .icon-btn{
+    width: 36px; height:36px; border-radius:999px;
+    border: 1px solid var(--line);
+    background: #fff;
+    display:inline-flex; align-items:center; justify-content:center;
+    color: var(--ink-2);
+  }
+  .icon-btn:hover{ background: var(--bg-2); }
+  .icon-btn svg{ width: 16px; height:16px; }
+
+  .panel-body{
+    flex: 1; overflow-y: auto;
+    padding: 8px 22px 12px;
+  }
+  .empty{
+    text-align: center; padding: 60px 20px;
+    color: var(--ink-3);
+  }
+  .empty .e-mark{
+    width: 48px; height:48px; border-radius:999px;
+    background: var(--bg-2);
+    display:inline-flex; align-items:center; justify-content:center;
+    margin-bottom: 14px; color: var(--ink-4);
+  }
+  .empty h4{
+    font-family:"Playfair Display",serif; font-weight: 400;
+    margin: 0 0 6px; color: var(--ink); font-size: 20px;
+  }
+  .empty p{ margin: 0; font-size: 14px; }
+
+  .line-item{
+    display:grid;
+    grid-template-columns: 60px 1fr auto;
+    gap: 14px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: center;
+  }
+  .line-item:last-child{ border-bottom: none; }
+  .li-thumb{
+    width: 60px; height: 60px;
+    border-radius: 10px;
+    background: linear-gradient(160deg, #f5ecdc, #e8dcc2);
+    position: relative; overflow:hidden;
+  }
+  .li-thumb.bag{
+    background: linear-gradient(160deg, #efe9df, #ddd5c4);
+  }
+  .li-thumb::after{
+    content:""; position:absolute; inset:0;
+    background: repeating-linear-gradient(135deg, transparent 0 8px, rgba(28,25,23,.05) 8px 9px);
+  }
+  .li-name{ font-size: 13px; line-height: 1.3; color: var(--ink); font-weight: 500; }
+  .li-tag{ font-size: 11px; color: var(--ink-3); margin-top: 3px; letter-spacing:.02em; }
+  .li-right{ display:flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+  .li-price{ font-size: 14px; font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .qty{
+    display:inline-flex; align-items:center;
+    background: #fff; border: 1px solid var(--line); border-radius: 999px;
+    padding: 2px;
+  }
+  .qty button{
+    width: 26px; height: 26px; border-radius: 999px;
+    border: none; background: transparent;
+    color: var(--ink-2); font-size: 14px; line-height: 1;
+    display:inline-flex; align-items:center; justify-content:center;
+  }
+  .qty button:hover{ background: var(--bg-2); }
+  .qty .val{
+    min-width: 24px; text-align:center; font-size: 13px;
+    font-variant-numeric: tabular-nums; font-weight: 500; color: var(--ink);
+  }
+  .li-remove{
+    background: none; border: none; padding: 4px;
+    color: var(--ink-4); font-size: 11px;
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+  .li-remove:hover{ color: var(--accent-c); }
+
+  .panel-foot{
+    padding: 18px 22px 22px;
+    border-top: 1px solid var(--line);
+    background: var(--bg);
+  }
+  .totals{
+    display:flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 14px;
+  }
+  .totals .label{ font-size: 13px; color: var(--ink-3); }
+  .totals .val{
+    font-family:"Playfair Display", serif; font-size: 28px; font-weight: 500;
+    color: var(--ink); letter-spacing:-.01em;
+    font-variant-numeric: tabular-nums;
+  }
+  .panel-foot .btn{ width: 100%; justify-content: center; padding: 16px 22px; font-size: 14px; }
+  .panel-foot .ship{
+    text-align: center; font-size: 11px; color: var(--ink-3);
+    margin-top: 12px; letter-spacing:.02em;
+  }
+
+  /* ============ CHECKOUT MODAL ============ */
+  .modal{
+    position: fixed; inset: 0; z-index: 70;
+    display:flex; align-items: flex-end; justify-content: center;
+    background: rgba(28,25,23,.55);
+    opacity: 0; pointer-events: none;
+    transition: opacity .25s ease;
+  }
+  @media (min-width: 760px){ .modal{ align-items: center; } }
+  .modal.open{ opacity: 1; pointer-events: auto; }
+  .modal-card{
+    background: var(--bg);
+    width: 100%; max-width: 520px;
+    border-radius: 22px 22px 0 0;
+    transform: translateY(20px);
+    transition: transform .3s cubic-bezier(.2,.8,.2,1);
+    max-height: 90vh; display:flex; flex-direction: column;
+    box-shadow: var(--shadow-3);
+  }
+  @media (min-width: 760px){
+    .modal-card{ border-radius: 22px; }
+  }
+  .modal.open .modal-card{ transform: translateY(0); }
+  .modal-head{
+    padding: 22px 22px 14px;
+    border-bottom: 1px solid var(--line);
+    display:flex; justify-content: space-between; align-items: center;
+  }
+  .modal-head h3{
+    font-family:"Playfair Display", serif; font-weight: 400;
+    font-size: 24px; margin: 0; letter-spacing:-.01em;
+  }
+  .modal-body{ padding: 18px 22px; overflow-y: auto; flex: 1; }
+  .co-item{
+    display:flex; justify-content: space-between; align-items: center;
+    padding: 14px 0; border-bottom: 1px solid var(--line);
+    gap: 12px;
+  }
+  .co-item:last-child{ border-bottom: none; }
+  .co-name{ font-size: 14px; color: var(--ink); flex: 1; }
+  .co-name .q{ color: var(--ink-3); font-size: 12px; margin-left: 4px; }
+  .co-sub{ font-variant-numeric: tabular-nums; font-weight: 600; font-size: 14px; }
+  .co-pay{
+    display:inline-flex; align-items: center; gap: 6px;
+    padding: 8px 14px; border-radius: 999px;
+    background: var(--ink); color: var(--bg);
+    font-size: 12px; font-weight: 500;
+    text-decoration: none; white-space: nowrap;
+    transition: transform .15s ease;
+  }
+  .co-pay:hover{ transform: translateY(-1px); }
+  .co-pay svg{ width: 12px; height: 12px; }
+  .co-row{ display:flex; flex-direction: column; gap: 8px; align-items: flex-end; }
+  .co-total-row{
+    padding: 14px 0 16px;
+    display:flex; justify-content: space-between; align-items: baseline;
+    border-top: 1.5px solid var(--ink);
+    margin: 0 0 4px;
+  }
+  .co-total-row .label{ font-size: 13px; color: var(--ink-3); }
+  .co-total-row .val{
+    font-family:"Playfair Display", serif; font-size: 28px; font-weight: 500;
+    font-variant-numeric: tabular-nums; color: var(--ink);
+  }
+  .modal-foot{
+    padding: 4px 22px 22px;
+    border-top: 1px solid var(--line);
+    background: var(--bg);
+  }
+  .note{
+    font-size: 12px; color: var(--ink-3);
+    background: var(--bg-2);
+    padding: 12px 14px; border-radius: 12px;
+    line-height: 1.5; margin-bottom: 14px;
+    text-wrap: pretty;
+  }
+  .wa-btn{
+    width: 100%; justify-content: center;
+    background: #fff; color: var(--ink); border: 1px solid var(--line-2);
+    padding: 14px; border-radius: 999px;
+    display:inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; font-weight: 500; text-decoration: none;
+  }
+  .wa-btn:hover{ background: var(--bg-2); }
+  .wa-btn svg{ width: 16px; height: 16px; }
+
+  /* ============ TOAST ============ */
+  .toast-wrap{
+    position: fixed; left: 0; right: 0; bottom: 24px;
+    display:flex; justify-content: center; pointer-events: none;
+    z-index: 80;
+  }
+  .toast{
+    background: var(--ink); color: var(--bg);
+    padding: 12px 18px; border-radius: 999px;
+    font-size: 13px;
+    box-shadow: var(--shadow-2);
+    transform: translateY(20px); opacity: 0;
+    transition: all .25s ease;
+  }
+  .toast.show{ transform: translateY(0); opacity: 1; }
+
+  /* ============ scrollbar ============ */
+  .panel-body::-webkit-scrollbar, .modal-body::-webkit-scrollbar{ width: 6px; }
+  .panel-body::-webkit-scrollbar-thumb, .modal-body::-webkit-scrollbar-thumb{ background: var(--line-2); border-radius: 999px; }
+</style>
+</head>
+<body>
+
+<!-- Inline SVG logo template -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="vortexGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f97316"/>
+      <stop offset="55%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#ec4899"/>
+    </linearGradient>
+    <symbol id="vortexMark" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="14" fill="none" stroke="url(#vortexGrad)" stroke-width="2.2"/>
+      <path d="M 16 4
+               C 22 4 28 9 28 16
+               C 28 22 22 26 16 26
+               C 11 26 8 23 8 19
+               C 8 16 10 14 13 14
+               C 15 14 17 15 17 17"
+            fill="none" stroke="url(#vortexGrad)" stroke-width="2.2" stroke-linecap="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand" aria-label="vórtice granola">
+      <svg class="mark" aria-hidden="true"><use href="#vortexMark"/></svg>
+      <span class="wordmark">
+        <span style="font-weight:400">vórtice</span>
+        <span class="sub">granola</span>
+      </span>
+    </a>
+    <button class="cart-btn" id="cartOpen" aria-label="Abrir carrito">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 4h2l2.4 12.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"/>
+        <circle cx="10" cy="20.5" r="1.3"/>
+        <circle cx="17" cy="20.5" r="1.3"/>
+      </svg>
+      <span class="cart-badge" id="cartBadge">0</span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow"><span class="dot"></span>Honest food · CABA</span>
+        <h1 class="hero-title">Granola artesanal, endulzada sólo con <em>miel de campo</em></h1>
+        <p class="hero-sub">100% natural. Sin conservantes. En frasco de vidrio o bolsa biodegradable.</p>
+        <div class="hero-cta-row">
+          <a href="#tienda" class="btn">Ver productos <span class="arrow">→</span></a>
+          <a href="#granola" class="btn ghost">La historia</a>
+        </div>
+        <div class="hero-meta">
+          <div><b>Hecho a mano</b> · cada tanda</div>
+          <div><b>Envíos</b> · CABA y GBA</div>
+          <div><b>Pago</b> · MercadoPago o transferencia</div>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="lid"></div>
+        <div class="jar"></div>
+        <div class="label">
+          <svg class="l-mark"><use href="#vortexMark"/></svg>
+          <div class="l-name">vórtice</div>
+          <div class="l-sub">granola</div>
+        </div>
+        <div class="pl">[product · frasco 500g — reemplazar con foto natural]</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TIENDA ============ -->
+  <section id="tienda">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>La tienda</span>
+        <h2>Elegí tu formato</h2>
+        <p>Dos tamaños, dos envases. Primera compra en frasco → después pedís el refill en bolsa.</p>
+      </div>
+      <div class="product-grid" id="productGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============ COMO COMPRAS ============ -->
+  <section id="como">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>El proceso</span>
+        <h2>Tres pasos y listo</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="num">01</div>
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 4h2l2.4 12.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"/>
+            <circle cx="10" cy="20.5" r="1.3"/>
+            <circle cx="17" cy="20.5" r="1.3"/>
+          </svg>
+          <h3>Agregás al carrito</h3>
+          <p>Elegís frasco o bolsa, en el tamaño que prefieras. Sumás más de uno si querés.</p>
+        </div>
+        <div class="step">
+          <div class="num">02</div>
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="6" width="18" height="13" rx="2"/>
+            <path d="M3 10h18M7 15h3"/>
+          </svg>
+          <h3>Pagás con MercadoPago</h3>
+          <p>Un link de pago seguro por producto. También aceptamos transferencia bancaria.</p>
+        </div>
+        <div class="step">
+          <div class="num">03</div>
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.5-5.2A8.5 8.5 0 1 1 21 11.5z"/>
+          </svg>
+          <h3>Coordinamos por WhatsApp</h3>
+          <p>Te escribimos para acordar día y dirección. Envíos en CABA y GBA, o retiro.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LA GRANOLA ============ -->
+  <section id="granola">
+    <div class="wrap">
+      <div class="granola-grid">
+        <div class="granola-visual" aria-hidden="true">
+          <div class="bowl"></div>
+          <div class="pl">[bowl con frutas frescas — reemplazar con foto natural]</div>
+        </div>
+        <div class="granola-body">
+          <span class="eyebrow"><span class="dot"></span>La granola</span>
+          <h2 class="serif" style="font-size: clamp(28px, 4.2vw, 44px); line-height:1.05; margin:14px 0 22px; letter-spacing:-.015em;">Una granola que se nota que la hicieron a mano</h2>
+          <p>vórtice nació de las ganas de comer bien sin resignar sabor. Cada tanda es artesanal — avena, miel de campo, frutos secos y semillas seleccionadas. Sin conservantes, sin azúcar agregada, sin atajos. Viene en frasco de vidrio para la primera compra y en bolsa biodegradable para el refill, porque el envase también importa.</p>
+          <ul class="bullets">
+            <li><span class="b-dot"></span><span>100% natural, 0% conservantes</span></li>
+            <li><span class="b-dot"></span><span>Endulzada sólo con miel de campo</span></li>
+            <li><span class="b-dot"></span><span>Frasco de vidrio o bolsa biodegradable</span></li>
+            <li><span class="b-dot"></span><span>Se personaliza con 48&nbsp;hs de anticipación</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACTO ============ -->
+  <section id="contacto">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>Contacto</span>
+        <h2>Escribinos</h2>
+        <p>Hacemos envíos a CABA y GBA. También podés acordar el retiro.</p>
+      </div>
+      <div class="contact-card">
+        <div class="contact-block">
+          <h3>WhatsApp</h3>
+          <p>Pedidos, consultas y coordinación de entrega.</p>
+          <div class="v">+54 9 11 2578-3737</div>
+          <a href="https://wa.me/5491125783737" target="_blank" rel="noopener" class="btn accent">Escribinos
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div class="contact-block">
+          <h3>Instagram</h3>
+          <p>Recetas, nuevas tandas y detrás de escena.</p>
+          <div class="v">@vortice_granola</div>
+          <a href="https://instagram.com/vortice_granola" target="_blank" rel="noopener" class="btn ghost">Ver el feed
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+          </a>
+        </div>
+        <div class="pay">
+          <span class="label">Métodos de pago</span>
+          <span class="pbadge">MercadoPago</span>
+          <span class="pbadge">Transferencia bancaria</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap footer-inner">
+    <a href="#top" class="brand">
+      <svg class="mark"><use href="#vortexMark"/></svg>
+      <span class="wordmark">
+        <span style="font-weight:400">vórtice</span>
+        <span class="sub">granola</span>
+      </span>
+    </a>
+    <div class="footer-meta">@vortice_granola · Hecho con amor en CABA · © 2025 vórtice granola</div>
+  </div>
+</footer>
+
+<!-- ============ CART PANEL ============ -->
+<div class="scrim" id="scrim"></div>
+<aside class="panel" id="panel" aria-hidden="true" aria-label="Carrito de compras">
+  <div class="panel-head">
+    <h3>Tu carrito</h3>
+    <button class="icon-btn" id="panelClose" aria-label="Cerrar carrito">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <div class="panel-body" id="panelBody"></div>
+  <div class="panel-foot" id="panelFoot" style="display:none">
+    <div class="totals">
+      <span class="label">Total</span>
+      <span class="val" id="panelTotal">$0</span>
+    </div>
+    <button class="btn accent" id="goCheckout">
+      Ir al checkout <span class="arrow">→</span>
+    </button>
+    <div class="ship">Coordinamos envío en CABA y GBA por WhatsApp.</div>
+  </div>
+</aside>
+
+<!-- ============ CHECKOUT MODAL ============ -->
+<div class="modal" id="modal" aria-hidden="true">
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-head">
+      <h3 id="modalTitle">Resumen del pedido</h3>
+      <button class="icon-btn" id="modalClose" aria-label="Cerrar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-foot">
+      <div class="co-total-row" id="modalTotalRow">
+        <span class="label">Total a pagar</span>
+        <span class="val" id="modalTotal">$0</span>
+      </div>
+      <div class="note">
+        Cada producto tiene su link de pago de MercadoPago. Si comprás varios, hacés un pago por cada uno. Después coordinamos la entrega por WhatsApp.
+      </div>
+      <a href="#" target="_blank" rel="noopener" class="wa-btn" id="waBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.5-5.2A8.5 8.5 0 1 1 21 11.5z"/></svg>
+        Consultar por WhatsApp
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ TOAST ============ -->
+<div class="toast-wrap"><div class="toast" id="toast">Agregado al carrito</div></div>
+
+<script>
+/* ====================================================
+   vórtice granola — carrito frontend
+   ==================================================== */
+
+const productos = [
+  {
+    id: "frasco-chico",
+    nombre: "Granola Clásica · Frasco 500g",
+    desc: "Avena, miel de campo, frutos secos y semillas. En frasco de vidrio reutilizable.",
+    precio: 22000,
+    tag: "Frasco de vidrio",
+    tipo: "glass",
+    mpLink: "https://mpago.la/REEMPLAZAR-frasco-chico"
+  },
+  {
+    id: "frasco-grande",
+    nombre: "Granola Clásica · Frasco 750g",
+    desc: "El mismo frasco, en tamaño más grande. Rinde para varias semanas.",
+    precio: 31500,
+    tag: "Frasco de vidrio",
+    tipo: "glass",
+    mpLink: "https://mpago.la/REEMPLAZAR-frasco-grande"
+  },
+  {
+    id: "bolsa-chica",
+    nombre: "Granola Clásica · Bolsa Refill 500g",
+    desc: "Refill en bolsa biodegradable para rellenar tu frasco de vidrio.",
+    precio: 15000,
+    tag: "Bolsa biodegradable · Refill",
+    tipo: "bag",
+    mpLink: "https://mpago.la/REEMPLAZAR-bolsa-chica"
+  },
+  {
+    id: "bolsa-grande",
+    nombre: "Granola Clásica · Bolsa Refill 750g",
+    desc: "Refill en tamaño grande. Más cantidad, menos envase.",
+    precio: 22000,
+    tag: "Bolsa biodegradable · Refill",
+    tipo: "bag",
+    mpLink: "https://mpago.la/REEMPLAZAR-bolsa-grande"
+  }
+];
+
+const WHATSAPP = "5491125783737";
+
+/* ---- format ARS ---- */
+const fmtARS = (n) => "$" + new Intl.NumberFormat("es-AR", { maximumFractionDigits: 0 }).format(n);
+
+/* ---- state ---- */
+const cart = {}; // id -> qty
+const STORAGE_KEY = "vortice-cart-v1";
+try {
+  const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+  if (saved && typeof saved === "object") Object.assign(cart, saved);
+} catch(e){}
+
+function persist(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(cart)); }
+function totalItems(){ return Object.values(cart).reduce((a,b)=>a+b, 0); }
+function totalAmount(){
+  return Object.entries(cart).reduce((sum, [id, q]) => {
+    const p = productos.find(p => p.id === id);
+    return sum + (p ? p.precio * q : 0);
+  }, 0);
+}
+
+/* ---- render product grid ---- */
+function renderProducts(){
+  const grid = document.getElementById("productGrid");
+  grid.innerHTML = productos.map((p, i) => {
+    const cls = p.tipo === "glass" ? "is-glass" : "is-bag";
+    const badgeCls = p.tipo === "glass" ? "badge accent" : "badge soft";
+    const illus = p.tipo === "glass"
+      ? `<svg width="100" height="120" viewBox="0 0 100 120" fill="none" aria-hidden="true">
+           <rect x="22" y="6" width="56" height="10" rx="2" fill="#292524"/>
+           <rect x="14" y="16" width="72" height="98" rx="14" fill="#d6a878" stroke="#8b5a2b" stroke-width="1"/>
+           <rect x="14" y="16" width="72" height="14" fill="rgba(255,255,255,.25)"/>
+           <rect x="28" y="48" width="44" height="34" rx="2" fill="#fafaf9"/>
+           <text x="50" y="62" text-anchor="middle" font-family="Playfair Display, serif" font-size="9" fill="#1c1917">vórtice</text>
+           <text x="50" y="73" text-anchor="middle" font-family="Inter, sans-serif" font-size="5" letter-spacing="1.5" fill="#57534e">GRANOLA</text>
+         </svg>`
+      : `<svg width="110" height="130" viewBox="0 0 110 130" fill="none" aria-hidden="true">
+           <path d="M16 24 L94 24 L98 116 Q98 124 90 124 L20 124 Q12 124 12 116 Z" fill="#a8967a" stroke="#6b5d49" stroke-width="1"/>
+           <path d="M16 24 Q18 14 30 14 L80 14 Q92 14 94 24" fill="#8b7a5e" stroke="#6b5d49" stroke-width="1"/>
+           <rect x="30" y="48" width="50" height="36" rx="2" fill="#fafaf9"/>
+           <text x="55" y="64" text-anchor="middle" font-family="Playfair Display, serif" font-size="10" fill="#1c1917">vórtice</text>
+           <text x="55" y="75" text-anchor="middle" font-family="Inter, sans-serif" font-size="5" letter-spacing="1.5" fill="#57534e">REFILL</text>
+         </svg>`;
+
+    return `
+      <article class="product ${cls}" data-id="${p.id}">
+        <div class="visual">
+          <div class="v-illus">${illus}</div>
+          <div class="v-label">[${p.tipo === "glass" ? "frasco" : "bolsa refill"} · placeholder]</div>
+        </div>
+        <div class="head">
+          <span class="${badgeCls}">${p.tag}</span>
+        </div>
+        <h3>${p.nombre.replace(" · ", "<br/><span style=\"font-family:Inter,sans-serif;font-size:13px;color:#57534e;letter-spacing:.02em;\">")}</span></h3>
+        <p class="desc">${p.desc}</p>
+        <div class="price-row">
+          <div class="price"><span class="ccy"></span>${fmtARS(p.precio)}</div>
+          <button class="btn-add" data-add="${p.id}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            Agregar
+          </button>
+        </div>
+      </article>
+    `;
+  }).join("");
+
+  grid.querySelectorAll("[data-add]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      addToCart(btn.dataset.add);
+      btn.classList.add("added");
+      const orig = btn.innerHTML;
+      btn.innerHTML = "Agregado";
+      setTimeout(()=>{ btn.classList.remove("added"); btn.innerHTML = orig; }, 1200);
+    });
+  });
+}
+
+/* ---- cart actions ---- */
+function addToCart(id){
+  cart[id] = (cart[id] || 0) + 1;
+  persist(); renderCart(); updateBadge();
+  showToast("Agregado al carrito");
+}
+function setQty(id, q){
+  if (q <= 0) { delete cart[id]; }
+  else cart[id] = q;
+  persist(); renderCart(); updateBadge();
+}
+function removeFromCart(id){
+  delete cart[id];
+  persist(); renderCart(); updateBadge();
+}
+
+/* ---- badge ---- */
+function updateBadge(){
+  const badge = document.getElementById("cartBadge");
+  const n = totalItems();
+  if (n > 0){ badge.textContent = n; badge.classList.add("is-visible"); }
+  else badge.classList.remove("is-visible");
+}
+
+/* ---- render cart panel ---- */
+function renderCart(){
+  const body = document.getElementById("panelBody");
+  const foot = document.getElementById("panelFoot");
+  const entries = Object.entries(cart).filter(([id, q]) => q > 0);
+
+  if (entries.length === 0){
+    body.innerHTML = `
+      <div class="empty">
+        <div class="e-mark">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 4h2l2.4 12.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"/>
+            <circle cx="10" cy="20.5" r="1.3"/><circle cx="17" cy="20.5" r="1.3"/>
+          </svg>
+        </div>
+        <h4>Tu carrito está vacío</h4>
+        <p>Elegí un formato más abajo y te esperamos acá.</p>
+      </div>
+    `;
+    foot.style.display = "none";
+    return;
+  }
+
+  body.innerHTML = entries.map(([id, q]) => {
+    const p = productos.find(p => p.id === id);
+    if (!p) return "";
+    return `
+      <div class="line-item">
+        <div class="li-thumb ${p.tipo === 'bag' ? 'bag' : ''}"></div>
+        <div>
+          <div class="li-name">${p.nombre}</div>
+          <div class="li-tag">${p.tag}</div>
+          <div class="qty" style="margin-top:8px">
+            <button data-qty-dec="${id}" aria-label="Quitar uno">−</button>
+            <span class="val">${q}</span>
+            <button data-qty-inc="${id}" aria-label="Agregar uno">+</button>
+          </div>
+        </div>
+        <div class="li-right">
+          <div class="li-price">${fmtARS(p.precio * q)}</div>
+          <button class="li-remove" data-remove="${id}">Quitar</button>
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  body.querySelectorAll("[data-qty-inc]").forEach(b => b.addEventListener("click", () => setQty(b.dataset.qtyInc, (cart[b.dataset.qtyInc]||0) + 1)));
+  body.querySelectorAll("[data-qty-dec]").forEach(b => b.addEventListener("click", () => setQty(b.dataset.qtyDec, (cart[b.dataset.qtyDec]||0) - 1)));
+  body.querySelectorAll("[data-remove]").forEach(b => b.addEventListener("click", () => removeFromCart(b.dataset.remove)));
+
+  foot.style.display = "block";
+  document.getElementById("panelTotal").textContent = fmtARS(totalAmount());
+}
+
+/* ---- panel open/close ---- */
+const panel = document.getElementById("panel");
+const scrim = document.getElementById("scrim");
+function openPanel(){
+  panel.classList.add("open"); scrim.classList.add("open");
+  panel.setAttribute("aria-hidden","false");
+  document.body.style.overflow = "hidden";
+}
+function closePanel(){
+  panel.classList.remove("open"); scrim.classList.remove("open");
+  panel.setAttribute("aria-hidden","true");
+  document.body.style.overflow = "";
+}
+document.getElementById("cartOpen").addEventListener("click", openPanel);
+document.getElementById("panelClose").addEventListener("click", closePanel);
+scrim.addEventListener("click", () => { closePanel(); closeModal(); });
+
+/* ---- toast ---- */
+let toastT;
+function showToast(msg){
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(toastT);
+  toastT = setTimeout(() => t.classList.remove("show"), 1800);
+}
+
+/* ---- checkout modal ---- */
+const modal = document.getElementById("modal");
+function openModal(){
+  if (totalItems() === 0) { showToast("Tu carrito está vacío"); return; }
+  renderCheckout();
+  modal.classList.add("open"); scrim.classList.add("open");
+  modal.setAttribute("aria-hidden","false");
+  document.body.style.overflow = "hidden";
+}
+function closeModal(){
+  modal.classList.remove("open"); scrim.classList.remove("open");
+  modal.setAttribute("aria-hidden","true");
+  document.body.style.overflow = "";
+}
+document.getElementById("goCheckout").addEventListener("click", () => { closePanel(); setTimeout(openModal, 300); });
+document.getElementById("modalClose").addEventListener("click", closeModal);
+
+function renderCheckout(){
+  const body = document.getElementById("modalBody");
+  const entries = Object.entries(cart).filter(([id, q]) => q > 0);
+
+  body.innerHTML = entries.map(([id, q]) => {
+    const p = productos.find(p => p.id === id);
+    if (!p) return "";
+    return `
+      <div class="co-item">
+        <div class="co-name">${p.nombre} <span class="q">× ${q}</span></div>
+        <div class="co-row">
+          <div class="co-sub">${fmtARS(p.precio * q)}</div>
+          <a href="${p.mpLink}" target="_blank" rel="noopener" class="co-pay">
+            Pagar con MercadoPago
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  document.getElementById("modalTotal").textContent = fmtARS(totalAmount());
+
+  // WhatsApp link with pre-filled message
+  const lines = entries.map(([id, q]) => {
+    const p = productos.find(p => p.id === id);
+    return `• ${p.nombre} × ${q} — ${fmtARS(p.precio * q)}`;
+  });
+  const msg = `Hola! Quiero hacer un pedido:\n\n${lines.join("\n")}\n\nTotal: ${fmtARS(totalAmount())}`;
+  const waUrl = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+  document.getElementById("waBtn").href = waUrl;
+}
+
+/* ---- escape closes ---- */
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    if (modal.classList.contains("open")) closeModal();
+    else if (panel.classList.contains("open")) closePanel();
+  }
+});
+
+/* ---- smooth scroll for anchors ---- */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener("click", (e) => {
+    const id = a.getAttribute("href").slice(1);
+    if (!id) return;
+    const el = document.getElementById(id);
+    if (el) { e.preventDefault(); el.scrollIntoView({ behavior: "smooth", block: "start" }); }
+  });
+});
+
+/* ---- init ---- */
+renderProducts();
+renderCart();
+updateBadge();
+</script>
+
+</body>
+</html>
