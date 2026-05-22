@@ -10,20 +10,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 <style>
   :root{
-    --bg: #fafaf9;          /* stone-50 */
-    --bg-2: #f5f5f4;        /* stone-100 */
-    --bg-3: #eeece7;        /* warm cream */
-    --ink: #1c1917;         /* stone-900 */
-    --ink-2: #292524;       /* stone-800 */
-    --ink-3: #57534e;       /* stone-600 */
-    --ink-4: #a8a29e;       /* stone-400 */
-    --line: #e7e5e4;        /* stone-200 */
-    --line-2: #d6d3d1;
-    --accent-a:#f97316;     /* orange */
-    --accent-b:#fbbf24;     /* amber */
-    --accent-c:#ec4899;     /* pink/magenta */
-    --grad: linear-gradient(95deg, #f97316 0%, #fbbf24 45%, #ec4899 100%);
-    --grad-soft: linear-gradient(140deg, #fde68a 0%, #fdba74 45%, #f9a8d4 100%);
+    --bg: #faf7f2;          /* warm cream */
+    --bg-2: #f3ede3;        /* deeper cream */
+    --bg-3: #ebe3d4;        /* tan cream */
+    --ink: #1a2440;         /* brand navy (label) */
+    --ink-2: #243054;       /* navy 800 */
+    --ink-3: #5a6480;       /* navy 600 */
+    --ink-4: #a3aac0;       /* navy 400 */
+    --line: #e7e1d3;        /* warm stone-200 */
+    --line-2: #d4cdba;
+    --honey: #c08a3e;       /* warm honey accent */
+    --honey-soft: #e9d3a8;
+    --grad: var(--ink);     /* legacy alias — solid navy */
+    --grad-soft: linear-gradient(140deg, #f3ead7 0%, #e9d3a8 100%);
     --radius: 14px;
     --radius-lg: 22px;
     --shadow-1: 0 1px 2px rgba(28,25,23,.04), 0 1px 1px rgba(28,25,23,.03);
@@ -67,7 +66,7 @@
     display:flex; align-items:center; gap:10px;
     text-decoration:none; color: var(--ink);
   }
-  .brand .mark{ width:30px; height:30px; }
+  .brand .mark{ width:30px; height:30px; object-fit: contain; }
   .brand .wordmark{
     display:flex; align-items:baseline; gap:7px;
     font-family:"Playfair Display", serif; font-weight:400; font-size: 19px;
@@ -93,10 +92,10 @@
     position:absolute; top:-4px; right:-4px;
     min-width: 20px; height:20px; padding: 0 5px;
     border-radius: 999px;
-    background: var(--grad);
+    background: var(--honey);
     color:#fff; font-size: 11px; font-weight:700;
     display:none; align-items:center; justify-content:center;
-    box-shadow: 0 2px 8px rgba(236,72,153,.35);
+    box-shadow: 0 2px 8px rgba(192,138,62,.4);
     font-variant-numeric: tabular-nums;
   }
   .cart-badge.is-visible{ display:inline-flex; animation: pop .3s ease; }
@@ -123,7 +122,7 @@
     color: var(--ink-3); font-weight: 500;
   }
   .eyebrow .dot{
-    width:6px; height:6px; border-radius:999px; background: var(--grad);
+    width:6px; height:6px; border-radius:999px; background: var(--honey);
   }
   h1.hero-title{
     font-family:"Playfair Display", serif; font-weight:400;
@@ -134,8 +133,13 @@
   }
   h1.hero-title em{
     font-style: italic; font-weight: 400;
-    background: var(--grad);
-    -webkit-background-clip: text; background-clip:text; color: transparent;
+    color: var(--ink);
+    position: relative;
+  }
+  h1.hero-title em::after{
+    content:""; position:absolute; left: 0; right: 0; bottom: 0.04em; height: 0.08em;
+    background: var(--honey-soft);
+    z-index: -1;
   }
   .hero-sub{
     font-size: 17px; color: var(--ink-3); max-width: 46ch;
@@ -163,10 +167,10 @@
   }
   .btn.ghost:hover{ background: #fff; }
   .btn.accent{
-    background: var(--grad); color:#fff; border:none;
-    box-shadow: 0 8px 20px -6px rgba(249,115,22,.35);
+    background: var(--ink); color:#fff; border:none;
+    box-shadow: 0 8px 20px -6px rgba(26,36,64,.35);
   }
-  .btn.accent:hover{ box-shadow: 0 12px 28px -8px rgba(236,72,153,.45); }
+  .btn.accent:hover{ box-shadow: 0 12px 28px -8px rgba(26,36,64,.45); }
 
   .hero-cta-row{ display:flex; flex-wrap:wrap; gap: 10px; align-items:center; }
   .hero-meta{
@@ -179,49 +183,15 @@
 
   /* hero visual */
   .hero-visual{
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 3 / 4;
     border-radius: var(--radius-lg);
-    background:
-      radial-gradient(120% 80% at 80% 20%, rgba(249,115,22,.35), transparent 55%),
-      radial-gradient(80% 60% at 20% 90%, rgba(236,72,153,.28), transparent 60%),
-      linear-gradient(160deg, #fde7c2 0%, #f5d6b0 50%, #f1bca6 100%);
-    position: relative; overflow:hidden;
+    overflow:hidden;
     box-shadow: var(--shadow-2);
+    background: var(--bg-3) center/cover no-repeat;
   }
-  .hero-visual::after{
-    content:""; position:absolute; inset:0;
-    background: repeating-linear-gradient(45deg, rgba(255,255,255,.0) 0 14px, rgba(255,255,255,.06) 14px 15px);
-    mix-blend-mode: overlay;
+  .hero-visual img{
+    width: 100%; height: 100%; object-fit: cover; display: block;
   }
-  .hero-visual .pl{
-    position:absolute; left: 22px; bottom: 18px;
-    font-family: "JetBrains Mono", ui-monospace, Menlo, monospace;
-    font-size: 11px; color: rgba(28,25,23,.55);
-    letter-spacing: .04em;
-  }
-  .hero-visual .jar{
-    position:absolute; inset: 8% 14% 8% 14%;
-    background:
-      linear-gradient(180deg, rgba(255,255,255,.18) 0 18%, transparent 18% 100%),
-      linear-gradient(180deg, #d6a878 0%, #b07a4a 100%);
-    border-radius: 28px 28px 36px 36px / 18px 18px 50px 50px;
-    box-shadow: inset 0 0 0 6px rgba(255,255,255,.18), inset 0 -30px 60px rgba(0,0,0,.18);
-  }
-  .hero-visual .lid{
-    position:absolute; left: 22%; right: 22%; top: 4%;
-    height: 7%;
-    background: linear-gradient(180deg, #292524, #1c1917);
-    border-radius: 8px 8px 4px 4px;
-  }
-  .hero-visual .label{
-    position:absolute; left: 24%; right: 24%; top: 45%;
-    background: #fafaf9; padding: 18px 14px 14px;
-    text-align:center; border-radius: 4px;
-    box-shadow: 0 6px 16px rgba(0,0,0,.12);
-  }
-  .hero-visual .label .l-mark{ width:22px; height:22px; margin:0 auto 6px; display:block; }
-  .hero-visual .label .l-name{ font-family:"Playfair Display",serif; font-size: 14px; color:var(--ink); }
-  .hero-visual .label .l-sub{ font-size: 8px; letter-spacing:.3em; text-transform:uppercase; color: var(--ink-3); margin-top:2px; }
 
   /* ============ Section base ============ */
   section{ padding: 72px 0; }
@@ -260,39 +230,20 @@
   }
   .product:hover{ transform: translateY(-3px); box-shadow: var(--shadow-2); border-color: transparent; }
   .product.is-glass{
-    background: linear-gradient(180deg, #fffaf2 0%, #fff 60%);
+    background: linear-gradient(180deg, #fdf9f0 0%, #fff 60%);
   }
   .product .visual{
-    aspect-ratio: 16/11;
+    aspect-ratio: 4/3;
     border-radius: 14px;
     margin-bottom: 22px;
     position:relative; overflow:hidden;
     background: var(--bg-3);
   }
-  .product.is-glass .visual{
-    background:
-      radial-gradient(70% 60% at 70% 30%, rgba(251,191,36,.35), transparent 60%),
-      radial-gradient(70% 60% at 30% 80%, rgba(249,115,22,.18), transparent 60%),
-      linear-gradient(160deg, #f5ecdc, #e8dcc2);
+  .product .visual img{
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform .5s cubic-bezier(.2,.8,.2,1);
   }
-  .product.is-bag .visual{
-    background:
-      radial-gradient(60% 50% at 30% 30%, rgba(236,72,153,.18), transparent 60%),
-      linear-gradient(160deg, #efe9df, #ddd5c4);
-  }
-  .product .visual::after{
-    content:""; position:absolute; inset:0;
-    background: repeating-linear-gradient(135deg, transparent 0 18px, rgba(28,25,23,.035) 18px 19px);
-  }
-  .product .visual .v-label{
-    position:absolute; left: 12px; bottom: 10px;
-    font-family: ui-monospace, Menlo, monospace; font-size: 10px;
-    color: rgba(28,25,23,.55); letter-spacing:.04em;
-  }
-  .product .visual .v-illus{
-    position:absolute; inset: 0;
-    display:flex; align-items:center; justify-content:center;
-  }
+  .product:hover .visual img{ transform: scale(1.04); }
   .badge{
     display:inline-flex; align-items:center; gap:6px;
     font-size: 11px; letter-spacing:.14em; text-transform:uppercase;
@@ -302,11 +253,11 @@
     font-weight: 500;
   }
   .badge.accent{
-    background: var(--grad);
+    background: var(--ink);
     color:#fff; border:none;
   }
   .badge.soft{
-    background: var(--grad-soft); color: var(--ink-2); border:none;
+    background: var(--honey-soft); color: var(--ink); border:none;
   }
   .product .head{ display:flex; align-items:center; justify-content:space-between; margin-bottom: 10px; gap: 10px; }
   .product h3{
@@ -352,8 +303,7 @@
   }
   .step .num{
     font-family:"Playfair Display", serif; font-style: italic;
-    font-size: 44px; line-height: 1; color: transparent;
-    background: var(--grad); -webkit-background-clip: text; background-clip:text;
+    font-size: 44px; line-height: 1; color: var(--ink);
     margin-bottom: 16px;
   }
   .step h3{
@@ -375,30 +325,14 @@
     .granola-grid{ grid-template-columns: 1fr 1fr; gap: 64px; }
   }
   .granola-visual{
-    aspect-ratio: 4/5;
+    aspect-ratio: 3/4;
     border-radius: var(--radius-lg);
-    background:
-      radial-gradient(80% 60% at 30% 30%, rgba(251,191,36,.4), transparent 60%),
-      radial-gradient(60% 50% at 80% 80%, rgba(249,115,22,.25), transparent 60%),
-      linear-gradient(160deg, #efe2c8, #d9c39a);
     position:relative; overflow:hidden;
-    box-shadow: var(--shadow-1);
+    box-shadow: var(--shadow-2);
+    background: var(--bg-3);
   }
-  .granola-visual::after{
-    content:""; position:absolute; inset:0;
-    background: repeating-linear-gradient(45deg, transparent 0 14px, rgba(255,255,255,.05) 14px 15px);
-  }
-  .granola-visual .pl{
-    position:absolute; left: 18px; bottom: 14px;
-    font-family: ui-monospace, Menlo, monospace; font-size: 11px;
-    color: rgba(28,25,23,.55);
-  }
-  .granola-visual .bowl{
-    position:absolute; left: 12%; right: 12%; top: 28%; bottom: 12%;
-    background:
-      radial-gradient(80% 50% at 50% 25%, #8b5a2b 0 30%, #6b3f1b 60%, #4a2810 100%);
-    border-radius: 50%/45% 45% 55% 55%;
-    box-shadow: inset 0 -20px 40px rgba(0,0,0,.35), 0 20px 30px -10px rgba(0,0,0,.2);
+  .granola-visual img{
+    width: 100%; height: 100%; object-fit: cover; display: block;
   }
 
   .granola-body p{ color: var(--ink-2); font-size: 17px; line-height: 1.65; text-wrap: pretty; }
@@ -411,7 +345,7 @@
   .bullets li:last-child{ border-bottom: 1px solid var(--line); }
   .bullets li .b-dot{
     width: 8px; height:8px; border-radius:999px; margin-top: 8px;
-    background: var(--grad); flex-shrink:0;
+    background: var(--honey); flex-shrink:0;
   }
 
   /* ============ CONTACTO ============ */
@@ -531,16 +465,10 @@
   .li-thumb{
     width: 60px; height: 60px;
     border-radius: 10px;
-    background: linear-gradient(160deg, #f5ecdc, #e8dcc2);
+    background: var(--bg-3) center/cover no-repeat;
     position: relative; overflow:hidden;
   }
-  .li-thumb.bag{
-    background: linear-gradient(160deg, #efe9df, #ddd5c4);
-  }
-  .li-thumb::after{
-    content:""; position:absolute; inset:0;
-    background: repeating-linear-gradient(135deg, transparent 0 8px, rgba(28,25,23,.05) 8px 9px);
-  }
+  .li-thumb img{ width: 100%; height: 100%; object-fit: cover; display: block; }
   .li-name{ font-size: 13px; line-height: 1.3; color: var(--ink); font-weight: 500; }
   .li-tag{ font-size: 11px; color: var(--ink-3); margin-top: 3px; letter-spacing:.02em; }
   .li-right{ display:flex; flex-direction: column; align-items: flex-end; gap: 8px; }
@@ -566,7 +494,7 @@
     color: var(--ink-4); font-size: 11px;
     display: inline-flex; align-items: center; gap: 4px;
   }
-  .li-remove:hover{ color: var(--accent-c); }
+  .li-remove:hover{ color: var(--honey); }
 
   .panel-foot{
     padding: 18px 22px 22px;
@@ -698,32 +626,13 @@
 </head>
 <body>
 
-<!-- Inline SVG logo template -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs>
-    <linearGradient id="vortexGrad" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#f97316"/>
-      <stop offset="55%" stop-color="#fbbf24"/>
-      <stop offset="100%" stop-color="#ec4899"/>
-    </linearGradient>
-    <symbol id="vortexMark" viewBox="0 0 32 32">
-      <circle cx="16" cy="16" r="14" fill="none" stroke="url(#vortexGrad)" stroke-width="2.2"/>
-      <path d="M 16 4
-               C 22 4 28 9 28 16
-               C 28 22 22 26 16 26
-               C 11 26 8 23 8 19
-               C 8 16 10 14 13 14
-               C 15 14 17 15 17 17"
-            fill="none" stroke="url(#vortexGrad)" stroke-width="2.2" stroke-linecap="round"/>
-    </symbol>
-  </defs>
-</svg>
+<!-- (logo mark now uses images/logo-mark.png) -->
 
 <!-- ============ NAV ============ -->
 <header class="nav">
   <div class="wrap nav-inner">
     <a href="#top" class="brand" aria-label="vórtice granola">
-      <svg class="mark" aria-hidden="true"><use href="#vortexMark"/></svg>
+      <img class="mark" src="images/logo-mark.png" alt="" />
       <span class="wordmark">
         <span style="font-weight:400">vórtice</span>
         <span class="sub">granola</span>
@@ -760,14 +669,7 @@
         </div>
       </div>
       <div class="hero-visual" aria-hidden="true">
-        <div class="lid"></div>
-        <div class="jar"></div>
-        <div class="label">
-          <svg class="l-mark"><use href="#vortexMark"/></svg>
-          <div class="l-name">vórtice</div>
-          <div class="l-sub">granola</div>
-        </div>
-        <div class="pl">[product · frasco 500g — reemplazar con foto natural]</div>
+        <img src="images/jar.jpg" alt="Frasco de vórtice granola sostenido a mano" />
       </div>
     </div>
   </section>
@@ -828,8 +730,7 @@
     <div class="wrap">
       <div class="granola-grid">
         <div class="granola-visual" aria-hidden="true">
-          <div class="bowl"></div>
-          <div class="pl">[bowl con frutas frescas — reemplazar con foto natural]</div>
+          <img src="images/bag-standing.jpg" alt="Bolsa biodegradable de vórtice granola con bowl de fruta" />
         </div>
         <div class="granola-body">
           <span class="eyebrow"><span class="dot"></span>La granola</span>
@@ -885,7 +786,7 @@
 <footer>
   <div class="wrap footer-inner">
     <a href="#top" class="brand">
-      <svg class="mark"><use href="#vortexMark"/></svg>
+      <img class="mark" src="images/logo-mark.png" alt="" />
       <span class="wordmark">
         <span style="font-weight:400">vórtice</span>
         <span class="sub">granola</span>
@@ -1018,33 +919,20 @@ function renderProducts(){
   grid.innerHTML = productos.map((p, i) => {
     const cls = p.tipo === "glass" ? "is-glass" : "is-bag";
     const badgeCls = p.tipo === "glass" ? "badge accent" : "badge soft";
-    const illus = p.tipo === "glass"
-      ? `<svg width="100" height="120" viewBox="0 0 100 120" fill="none" aria-hidden="true">
-           <rect x="22" y="6" width="56" height="10" rx="2" fill="#292524"/>
-           <rect x="14" y="16" width="72" height="98" rx="14" fill="#d6a878" stroke="#8b5a2b" stroke-width="1"/>
-           <rect x="14" y="16" width="72" height="14" fill="rgba(255,255,255,.25)"/>
-           <rect x="28" y="48" width="44" height="34" rx="2" fill="#fafaf9"/>
-           <text x="50" y="62" text-anchor="middle" font-family="Playfair Display, serif" font-size="9" fill="#1c1917">vórtice</text>
-           <text x="50" y="73" text-anchor="middle" font-family="Inter, sans-serif" font-size="5" letter-spacing="1.5" fill="#57534e">GRANOLA</text>
-         </svg>`
-      : `<svg width="110" height="130" viewBox="0 0 110 130" fill="none" aria-hidden="true">
-           <path d="M16 24 L94 24 L98 116 Q98 124 90 124 L20 124 Q12 124 12 116 Z" fill="#a8967a" stroke="#6b5d49" stroke-width="1"/>
-           <path d="M16 24 Q18 14 30 14 L80 14 Q92 14 94 24" fill="#8b7a5e" stroke="#6b5d49" stroke-width="1"/>
-           <rect x="30" y="48" width="50" height="36" rx="2" fill="#fafaf9"/>
-           <text x="55" y="64" text-anchor="middle" font-family="Playfair Display, serif" font-size="10" fill="#1c1917">vórtice</text>
-           <text x="55" y="75" text-anchor="middle" font-family="Inter, sans-serif" font-size="5" letter-spacing="1.5" fill="#57534e">REFILL</text>
-         </svg>`;
+    const photo = p.tipo === "glass" ? "images/jar.jpg" : "images/bowl-bag.jpg";
+    const photoAlt = p.tipo === "glass"
+      ? "Frasco de v\u00f3rtice granola"
+      : "Bolsa refill de v\u00f3rtice granola con bowl de fruta";
 
     return `
       <article class="product ${cls}" data-id="${p.id}">
         <div class="visual">
-          <div class="v-illus">${illus}</div>
-          <div class="v-label">[${p.tipo === "glass" ? "frasco" : "bolsa refill"} · placeholder]</div>
+          <img src="${photo}" alt="${photoAlt}" loading="lazy" />
         </div>
         <div class="head">
           <span class="${badgeCls}">${p.tag}</span>
         </div>
-        <h3>${p.nombre.replace(" · ", "<br/><span style=\"font-family:Inter,sans-serif;font-size:13px;color:#57534e;letter-spacing:.02em;\">")}</span></h3>
+        <h3>${p.nombre.replace(" · ", "<br/><span style=\"font-family:Inter,sans-serif;font-size:13px;color:var(--ink-3);letter-spacing:.02em;\">")}</span></h3>
         <p class="desc">${p.desc}</p>
         <div class="price-row">
           <div class="price"><span class="ccy"></span>${fmtARS(p.precio)}</div>
@@ -1118,9 +1006,10 @@ function renderCart(){
   body.innerHTML = entries.map(([id, q]) => {
     const p = productos.find(p => p.id === id);
     if (!p) return "";
+    const photo = p.tipo === "glass" ? "images/jar.jpg" : "images/bowl-bag.jpg";
     return `
       <div class="line-item">
-        <div class="li-thumb ${p.tipo === 'bag' ? 'bag' : ''}"></div>
+        <div class="li-thumb"><img src="${photo}" alt="" /></div>
         <div>
           <div class="li-name">${p.nombre}</div>
           <div class="li-tag">${p.tag}</div>
